@@ -1,0 +1,43 @@
+-- Create the table without default values or enforced constraints
+CREATE TABLE [wh_project].[dbo].[aspirations]
+(
+    id               BIGINT NOT NULL,
+    profile_id       BIGINT NOT NULL,
+    major_id         BIGINT NOT NULL,
+    priority         BIGINT,
+    criteria         TEXT,
+    is_passed        BIT,
+    group_subject_id BIGINT,
+    created_at       DATETIMEOFFSET,
+    deleted_at       DATETIMEOFFSET,
+    updated_at       DATETIMEOFFSET,
+    is_early_passed  BIT
+);
+GO
+
+-- Add the primary key constraint
+ALTER TABLE [wh_project].[dbo].[aspirations]
+ADD CONSTRAINT pk_aspirations PRIMARY KEY (id);
+GO
+
+-- Add the identity property to the 'id' column (if supported)
+ALTER TABLE [wh_project].[dbo].[aspirations]
+ALTER COLUMN id BIGINT IDENTITY(1,1);
+GO
+
+-- Add foreign key constraints as unenforced constraints
+ALTER TABLE [wh_project].[dbo].[aspirations]
+ADD CONSTRAINT fk_aspirations_profile FOREIGN KEY (profile_id)
+REFERENCES profiles (id) NOT ENFORCED;
+GO
+
+ALTER TABLE [wh_project].[dbo].[aspirations]
+ADD CONSTRAINT fk_aspirations_major FOREIGN KEY (major_id)
+REFERENCES majors (id) NOT ENFORCED;
+GO
+
+ALTER TABLE [wh_project].[dbo].[aspirations]
+ADD CONSTRAINT fk_aspirations_group_subject FOREIGN KEY (group_subject_id)
+REFERENCES group_subjects (id) NOT ENFORCED;
+GO
+
