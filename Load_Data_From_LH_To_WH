@@ -1,0 +1,55 @@
+CREATE TABLE wh_project.dbo.enrollment_wave_majors
+AS
+SELECT * FROM Tutorial_LH.dbo.enrollment_wave_majors;
+
+CREATE TABLE wh_project.dbo.enrollment_waves
+AS
+SELECT * FROM Tutorial_LH.dbo.enrollment_waves;
+
+CREATE TABLE wh_project.dbo.group_subjects
+AS
+SELECT * FROM Tutorial_LH.dbo.group_subjects;
+
+CREATE TABLE wh_project.dbo.districts
+AS
+SELECT * FROM Tutorial_LH.dbo.districts;
+
+CREATE TABLE wh_project.dbo.high_schools
+AS
+SELECT * FROM Tutorial_LH.dbo.high_schools;
+
+CREATE TABLE wh_project.dbo.major_group_subjects
+AS
+SELECT * FROM Tutorial_LH.dbo.major_group_subjects;
+
+CREATE TABLE wh_project.dbo.majors
+AS
+SELECT * FROM Tutorial_LH.dbo.majors;
+
+CREATE TABLE wh_project.dbo.nations
+AS
+SELECT * FROM Tutorial_LH.dbo.nations;
+
+CREATE TABLE wh_project.dbo.policy_areas
+AS
+SELECT * FROM Tutorial_LH.dbo.policy_areas;
+
+CREATE TABLE wh_project.dbo.policy_objects
+AS
+SELECT * FROM Tutorial_LH.dbo.policy_objects;
+
+CREATE TABLE wh_project.dbo.profiles
+AS
+SELECT * FROM Tutorial_LH.dbo.profiles;
+
+CREATE TABLE wh_project.dbo.provinces
+AS
+SELECT * FROM Tutorial_LH.dbo.provinces;
+
+CREATE TABLE wh_project.dbo.religions
+AS
+SELECT * FROM Tutorial_LH.dbo.religions;
+
+CREATE TABLE wh_project.dbo.scholastics
+AS
+SELECT * FROM Tutorial_LH.dbo.scholastics;
