@@ -1,0 +1,7 @@
+SELECT TOP 7 FORMAT(updated_at, 'dd-MM-yyyy') AS formatted_date, COUNT(*) AS total
+FROM profiles
+WHERE scholastic_id = 2 
+    AND admission_status = 'submitted' 
+    AND updated_at < GETDATE()
+GROUP BY FORMAT(updated_at, 'dd-MM-yyyy')
+ORDER BY FORMAT(updated_at, 'dd-MM-yyyy') DESC;
