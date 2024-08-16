@@ -1,7 +1,19 @@
-SELECT TOP 7 FORMAT(updated_at, 'dd-MM-yyyy') AS formatted_date, COUNT(*) AS total
+-- Thống kê chỉ tiêu tuyển sinh theo tổ hợp xét tuyển
+SELECT majors.code, majors.name, a2.group_subject_id, group_subjects.code ,count(distinct a2.profile_id) as total from [wh_project].[dbo].[aspirations2] as a2
+INNER JOIN profiles ON a2.profile_id = profiles.id
+INNER JOIN majors ON a2.major_id = majors.id
+INNER JOIN major_group_subjects ON majors.id = major_group_subjects.major_id
+INNER JOIN group_subjects ON a2.group_subject_id = group_subjects.id
+WHERE profiles.scholastic_id = 2 AND admission_status = 'submitted'
+GROUP BY majors.code, majors.name, a2.group_subject_id, group_subjects.code
+ORDER BY majors.name;
+
+-- Thống kê số lượng đăng kí theo ngày
+SELECT CAST(updated_at AS DATE) AS [Date], COUNT(*) AS [Total]
 FROM profiles
 WHERE scholastic_id = 2 
-    AND admission_status = 'submitted' 
-    AND updated_at < GETDATE()
-GROUP BY FORMAT(updated_at, 'dd-MM-yyyy')
-ORDER BY FORMAT(updated_at, 'dd-MM-yyyy') DESC;
+  AND admission_status = 'submitted' 
+  AND CAST(updated_at AS DATE) < CAST(GETDATE() AS DATE)
+GROUP BY CAST(updated_at AS DATE)
+ORDER BY [Date] DESC
+OFFSET 0 ROWS FETCH NEXT 7 ROWS ONLY;
