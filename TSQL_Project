@@ -41,3 +41,11 @@ ADD CONSTRAINT fk_aspirations_group_subject FOREIGN KEY (group_subject_id)
 REFERENCES group_subjects (id) NOT ENFORCED;
 GO
 
+UPDATE ps
+SET ps.deleted_at = GETDATE()
+FROM profiles ps
+LEFT JOIN basic_infos bs ON ps.basic_info_id = bs.id
+WHERE ps.scholastic_id = 2 
+  AND ps.admission_status = 'submitted' 
+  AND bs.province_code = '';
+
