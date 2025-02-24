@@ -17,3 +17,22 @@ WHERE scholastic_id = 2
 GROUP BY CAST(updated_at AS DATE)
 ORDER BY [Date] DESC
 OFFSET 0 ROWS FETCH NEXT 7 ROWS ONLY;
+
+-- thống kê theo Tỉnh/TP
+select distinct province_code, name, slhoso from tk_theo_tinh_tp
+left join provinces on tk_theo_tinh_tp.province_code = provinces.code
+order by slhoso desc;
+
+select distinct province_code, name, slhoso from (
+  select province_code, count(*) as slhoso from profiles
+  inner join basic_infos on profiles.basic_info_id = basic_infos.id
+  where admission_status = 'submitted' and scholastic_id = 2 and profiles.deleted_at IS NULL AND basic_infos.deleted_at IS NULL
+  group by province_code
+)
+
+-- thống kê theo ngành học
+select kgroups, count(profile_id) as total from aspirations
+inner join profiles on aspirations.profile_id = profiles.id
+inner join majors on aspirations.major_id = majors.id
+where profiles.scholastic_id = 2 and admission_status = 'submitted' and profiles.deleted_at IS NULL and aspirations.deleted_at is null
+GROUP BY kgroups
