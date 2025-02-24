@@ -1,3 +1,8 @@
+-- Load data from lakehouse sang warehouse manually
+CREATE TABLE wh_project.dbo.enrollment_wave_majors
+AS
+SELECT * FROM Tutorial_LH.dbo.enrollment_wave_majors;
+
 -- Create the table without default values or enforced constraints
 CREATE TABLE [wh_project].[dbo].[aspirations]
 (
